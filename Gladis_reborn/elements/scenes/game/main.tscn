@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnay2k43bahbr"]
+
+[ext_resource type="PackedScene" uid="uid://lpofhqfv4wrg" path="res://elements/scenes/background/background.tscn" id="1_i4r7b"]
+[ext_resource type="PackedScene" uid="uid://dhfwes872hpwy" path="res://elements/scenes/player/player.tscn" id="2_rg6cl"]
+[ext_resource type="Script" path="res://PickupPositioner.gd" id="3_7uxse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0qdm"]
+size = Vector2(14, 14)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_i4r7b")]
+
+[node name="PickupPositioner" type="Marker2D" parent="."]
+script = ExtResource("3_7uxse")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="PickupPositioner"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupPositioner/Area2D"]
+shape = SubResource("RectangleShape2D_o0qdm")
+debug_color = Color(0.912137, 9.6454e-05, 0.724228, 0.42)
+
+[node name="Player" parent="." instance=ExtResource("2_rg6cl")]
+position = Vector2(200, 180)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="PickupPositioner" method="_on_timer_timeout"]

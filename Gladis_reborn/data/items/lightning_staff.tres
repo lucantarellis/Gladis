@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://j788vnaunao0"]
+
+[ext_resource type="PackedScene" uid="uid://bwrf5y0fu35vr" path="res://elements/scenes/items/weapons/lightning_staff.tscn" id="1_epqgy"]
+[ext_resource type="Script" path="res://models/item.gd" id="1_uapr5"]
+
+[resource]
+script = ExtResource("1_uapr5")
+name = "Lightning Staff"
+scene = ExtResource("1_epqgy")
+tag = "weapon"

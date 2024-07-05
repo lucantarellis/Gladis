@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://djt6c7fendtqb"]
+
+[ext_resource type="PackedScene" uid="uid://b3gfqqul77ucd" path="res://elements/scenes/items/weapons/barbed_sword.tscn" id="1_cncad"]
+[ext_resource type="Script" path="res://models/item.gd" id="1_uxlpj"]
+
+[resource]
+script = ExtResource("1_uxlpj")
+name = "Barbed Sword"
+scene = ExtResource("1_cncad")
+tag = "weapon"

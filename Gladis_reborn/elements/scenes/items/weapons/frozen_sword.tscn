@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfwfg8jqs8rvo"]
+
+[ext_resource type="Script" path="res://elements/scripts/items/weapons.gd" id="1_3yy78"]
+[ext_resource type="Texture2D" uid="uid://c6mchvl8beyyt" path="res://elements/sprites/items/weapons/WeaponsPack.png" id="1_re8qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2es6t"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_73gk5"]
+resource_name = "swing"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.101532, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxxc0"]
+_data = {
+"swing": SubResource("Animation_73gk5")
+}
+
+[node name="FrozenSword" type="Node2D"]
+position = Vector2(-14, 15)
+script = ExtResource("1_3yy78")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_re8qa")
+offset = Vector2(14, -15)
+region_enabled = true
+region_rect = Rect2(65, 65, 14, 14)
+
+[node name="Hitbox" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/Hitbox"]
+polygon = PackedVector2Array(11, -14, 15, -19, 16, -19, 19, -22, 21, -22, 21, -20, 17, -16, 17, -15, 14, -12)
+
+[node name="Contactbox" type="Area2D" parent="Sprite2D"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Contactbox"]
+position = Vector2(14, -15)
+shape = SubResource("RectangleShape2D_2es6t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_lxxc0")
+}
+
+[connection signal="body_entered" from="Sprite2D/Contactbox" to="." method="_on_contactbox_body_entered"]
