@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnay2k43bahbr"]
+[gd_scene load_steps=9 format=3 uid="uid://bnay2k43bahbr"]
 
 [ext_resource type="PackedScene" uid="uid://lpofhqfv4wrg" path="res://elements/scenes/background/background.tscn" id="1_i4r7b"]
 [ext_resource type="PackedScene" uid="uid://dhfwes872hpwy" path="res://elements/scenes/player/player.tscn" id="2_rg6cl"]
@@ -7,9 +7,41 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0qdm"]
 size = Vector2(14, 14)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h06b"]
+bg_color = Color(0.22, 0.21813, 0.2178, 1)
+border_color = Color(0.54, 0.45, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjy0p"]
+bg_color = Color(0.27872, 0.0497045, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bhar"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dn37"]
+bg_color = Color(0.0373334, 0.32, 0, 1)
+
 [node name="Main" type="Node2D"]
 
+[node name="GameControl" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="GameControl"]
+wait_time = 5.0
+autostart = true
+
 [node name="Background" parent="." instance=ExtResource("1_i4r7b")]
+
+[node name="Player" parent="." instance=ExtResource("2_rg6cl")]
+position = Vector2(200, 180)
 
 [node name="PickupPositioner" type="Marker2D" parent="."]
 script = ExtResource("3_7uxse")
@@ -21,11 +53,64 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_o0qdm")
 debug_color = Color(0.912137, 9.6454e-05, 0.724228, 0.42)
 
-[node name="Player" parent="." instance=ExtResource("2_rg6cl")]
-position = Vector2(200, 180)
+[node name="P1HealthBar" type="ProgressBar" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 264.0
+offset_bottom = 38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6h06b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bjy0p")
+value = 50.0
+show_percentage = false
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+[node name="P1StaminaBar" type="ProgressBar" parent="."]
+offset_left = 32.0
+offset_top = 45.0
+offset_right = 192.0
+offset_bottom = 51.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8bhar")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8dn37")
+value = 60.0
+show_percentage = false
 
-[connection signal="timeout" from="Timer" to="PickupPositioner" method="_on_timer_timeout"]
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Player1_HUD" type="VBoxContainer" parent="HUD"]
+layout_mode = 2
+offset_left = 33.0
+offset_top = 74.0
+offset_right = 265.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Player1_HUD"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Player1_HUD"]
+layout_mode = 2
+
+[node name="Player2_HUD" type="HBoxContainer" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 320.0
+offset_right = 644.0
+offset_bottom = 400.0
+size_flags_horizontal = 10
+
+[node name="P2StaminaBar" type="ProgressBar" parent="HUD/Player2_HUD"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8bhar")
+show_percentage = false
+
+[node name="P2HealthBar" type="ProgressBar" parent="HUD/Player2_HUD"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6h06b")
+show_percentage = false
+
+[connection signal="timeout" from="GameControl/Timer" to="PickupPositioner" method="_on_timer_timeout"]

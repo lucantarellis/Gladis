@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var damage:int
 @export var speed:int
 
-func start(_position, _direction):
+func start(_position, _direction) -> void:
 	rotation = _direction.angle()
 	position = _position
 	velocity = Vector2(speed, 0).rotated(rotation)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Pickups" load_steps=5 format=3 uid="uid://dar4s3p8ne3nx"]
+
+[ext_resource type="Script" path="res://models/pickups.gd" id="1_0ha65"]
+[ext_resource type="Resource" uid="uid://drle6f4gu68ag" path="res://data/items/enhancements/rof_up.tres" id="1_y71c3"]
+[ext_resource type="Resource" uid="uid://b34loxyq2occ3" path="res://data/items/magics/test.tres" id="2_fmg8q"]
+[ext_resource type="Resource" uid="uid://ddjtnhjykobr6" path="res://data/items/projectiles/default_big.tres" id="3_r585h"]
+
+[resource]
+script = ExtResource("1_0ha65")
+projectiles = Array[Resource("res://models/projectile.gd")]([ExtResource("3_r585h")])
+magics = Array[Resource("res://models/magic.gd")]([ExtResource("2_fmg8q")])
+enhancements = Array[Resource("res://models/enhancement.gd")]([ExtResource("1_y71c3")])

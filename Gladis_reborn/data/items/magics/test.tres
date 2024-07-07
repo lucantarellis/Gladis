@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Magic" load_steps=3 format=3 uid="uid://b34loxyq2occ3"]
+
+[ext_resource type="Script" path="res://models/magic.gd" id="1_aebbi"]
+[ext_resource type="PackedScene" uid="uid://83w8s8uqu1mf" path="res://elements/scenes/items/magics/test_magic.tscn" id="1_hs3by"]
+
+[resource]
+script = ExtResource("1_aebbi")
+name = "Test Magic"
+element = "fire"
+scene = ExtResource("1_hs3by")
+cast = "Tes toh!"

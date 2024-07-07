@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Enhancement" load_steps=3 format=3 uid="uid://drle6f4gu68ag"]
+
+[ext_resource type="Script" path="res://models/enhancement.gd" id="1_dsrsd"]
+[ext_resource type="PackedScene" uid="uid://dtk5ofwgcyta8" path="res://elements/scenes/items/enhancements/enhancement.tscn" id="1_h02wt"]
+
+[resource]
+script = ExtResource("1_dsrsd")
+name = "Rate of fire up"
+scene = ExtResource("1_h02wt")
+range = 0.0
+rate_of_fire = 0.05
+reload = 0.0
+mag = 0

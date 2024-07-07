@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Projectile" load_steps=3 format=3 uid="uid://ddjtnhjykobr6"]
+
+[ext_resource type="Script" path="res://models/projectile.gd" id="1_5f3un"]
+[ext_resource type="PackedScene" uid="uid://dm4hv3e63flt2" path="res://elements/scenes/items/projectiles/default_big.tscn" id="1_7gflq"]
+
+[resource]
+script = ExtResource("1_5f3un")
+name = "Default Big"
+scene = ExtResource("1_7gflq")
